@@ -1,7 +1,7 @@
 import cv2
 import os
 import logging
-import numpy as np  # numpy import 추가
+import numpy as np
 from pdf2image import convert_from_path
 from doclayout_yolo import YOLOv10
 from huggingface_hub import hf_hub_download
@@ -47,7 +47,7 @@ def analyze_pdf(pdf_path, output_dir="output"):
 
         # 모델 예측
         logging.info(f"페이지 {i + 1} 예측 수행 중...")
-        det_res = model.predict(temp_image_path, imgsz=1024, conf=0.2, device="cpu")
+        det_res = model.predict(temp_image_path, imgsz=1024, conf=0.3, device="cpu")
         logging.info(f"페이지 {i + 1} 예측 완료.")
 
         # 결과 시각화 및 저장
@@ -59,5 +59,5 @@ def analyze_pdf(pdf_path, output_dir="output"):
     logging.info("PDF 분석이 완료되었습니다.")
 
 # 사용 예시
-pdf_path = "/Users/tachyon/Desktop/티디온.pdf"
+pdf_path = "/Users/tachyon/견적서/크몽_폼마루_홈페이지_견적서.pdf"
 analyze_pdf(pdf_path)
